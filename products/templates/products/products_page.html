@@ -1,0 +1,60 @@
+{% extends "base.html" %}{#because base.html이 products 폴더밑에 없으니까 어디에 base.html#}
+
+{#이 어디에 속해있는지 알려줘야된다#}
+{% block title %}Royal Hotels{% endblock %}
+
+{% block header %}Welcome to the Royal Hotels!{% endblock %}
+{% block content %}
+<div class="admin_panel">
+<form name="productForm" method="POST" action="">
+    <div class="formObject">
+        {% csrf_token %}
+        <label for="menu_id">Select a product from the list to edit:</label>
+        <select id="menu_id" name="menu" onChange=" top.location.href=this.options[this.selectedIndex].value;">
+        {% for product in products %}
+        <option value="../{{ product.pk }}/details/">{{ product.name }}</option>
+        {% endfor %}
+        </select>
+        <div class="fromBtn_container">
+            <a href="{% url 'createRecord' %}"><button type="button" class="btn">Create New Product</button></a>
+            <a href="{% url 'home' %}"><button type="button" class="btn">Logout of Profile</button></a>
+        </div>
+    </div>
+</form>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% for product in products %}#}
+   {# <ul> #}
+       {# <li>{{ product.name }}</li>#we can list products that we save eariler #}
+
+   {# </ul> #}
